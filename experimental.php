@@ -1,63 +1,45 @@
 <?php
 
-// customer = for who
 function orderPizza($pizzatype, $customer) 
 {
-    $type = $pizzatype;
-    echo 'Creating new order... <br>';
-    $price = calculateCost($type);
-
+    $price = calculateCost($pizzatype);
 
     $address = 'unknown';
-        if($customer == 'koen'){
-            $address = 'a yacht in Antwerp';
-            }
-        if ($customer == 'manuele'){
-            $address = 'somewhere in Belgium';
-            }
-        if ($customer == 'students') {
-            $address = 'BeCode office';
-        }
 
-    $toPrint =  
-        "A {$pizzatype} pizza should be sent to {$customer}" . 
-        "<br> The address: {$address}."  . 
-        "<br> The bill is € {$price}." . 
-        "<br> Order finished. <br><br>"; 
+        if ($customer == 'Koen')  $address = "a yacht in Antwerp"; 
+        if ($customer == 'Manuele') $address = 'somewhere in Belgium';
+        if ($customer == 'students') $address = 'BeCode office';
+    
 
-    echo $toPrint;              
-        
+    echo 'Creating new order... <br>';
+    echo "A {$pizzatype} pizza should be sent to {$customer}. <br>";
+    echo "The address: {$address}. <br> ";
+    echo "The bill is € {$price}. <br>";
+    echo "Order finished. <br><br>"; 
+      
 }
 
 
-function calculateCost($p_type)
+function calculateCost($pizzaType)
 {
     $cost = 'unknown';
 
-    if ($p_type == 'marguerita'){
-        $cost = 5;
-    }
-    
-    if ($p_type == 'golden'){
-            $cost = 100;
-    }
-
-    if ($p_type == 'calzone'){
-        $cost = 10;
-    }
-
-    if ($p_type == 'hawai') {
+        if ($pizzaType == 'marguerita') $cost = 5;
+        if ($pizzaType == 'golden') $cost = 100;
+        if ($pizzaType == 'calzone') $cost = 10;
+        if ($pizzaType == 'hawai') {
             throw new Exception('Computer says no');
-    }
+        }
 
     return $cost;
 }
 
-function ordr_piz_all()
+
+function orderAllPizza()
 {
-    orderPizza('calzone', 'koen');
-    orderPizza('marguerita', 'manuele');
+    orderPizza('calzone', 'Koen');
+    orderPizza('marguerita', 'Manuele');
     orderPizza('golden', 'students');
 }
 
-ordr_piz_all();
+orderAllPizza();
